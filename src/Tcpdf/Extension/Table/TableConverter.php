@@ -331,7 +331,7 @@ class TableConverter
 
                 if ($height > $pageContentHeight) {
 
-                    $cell->setText( rim(preg_replace('/\s+/', ' ',  $cell->getText());
+                    $cell->setText( trim(preg_replace('/\s+/', ' | ',  $cell->getText())));
                     
                     // $msg = "Wysokość bloku tekstu w komórce tabelki jest wyższa niż wysokość strony. "
                     //      . "Proszę zmienić wysokość tekstu tak, żeby mieścił się na jednej stronie."

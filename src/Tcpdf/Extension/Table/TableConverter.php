@@ -331,8 +331,21 @@ class TableConverter
 
                 if ($height > $pageContentHeight) {
 
-                    $cell->setText( trim(preg_replace('/\s+/', ' | ',  $cell->getText())));
-                    
+                    $tmp = trim(preg_replace('/\n+/', ' | ',  $cell->getText()));
+                    $cell->setText($tmp);
+                    $lines = $pdf->getNumLines(
+                        $cell->getText(),
+                        $cellWidths[$r][$c],
+                        false,
+                        false,
+                        array('T' => 0, 'R' => $padding['R'], 'B' => 0, 'L' => $padding['L']),
+                        $cell->getBorder()
+                    );
+                    $height = $lines * $cell->getLineHeight() * ($cell->getFontSize() / $pdf->getScaleFactor()) * $pdf->getCellHeightRatio();
+                    $height += $padding['T'] + $padding['B'];
+                    if ($cell->getMinHeight() > $height) {
+                        $height = $cell->getMinHeight();
+                    }
                     // $msg = "Wysokość bloku tekstu w komórce tabelki jest wyższa niż wysokość strony. "
                     //      . "Proszę zmienić wysokość tekstu tak, żeby mieścił się na jednej stronie."
                     //      . "Problem dotyczy komórki zawierającej następującą treść: "

@@ -330,11 +330,10 @@ class TableConverter
                 }
 
                 if ($height > $pageContentHeight) {
-                    $msg = "The height of the cell's content exceeds the page height. "
-                         . "Wrapping of such a cell is currently not supported by "
-                         . "tcpdf-extension. Please try to split your text into "
-                         . "multiple rows manually. The content of the specific "
-                         . "cell is: \"%s\"."
+                    $msg = "Wysokość bloku tekstu w komórce tabelki jest wyższa niż wysokość strony. "
+                         . "Proszę zmienić wysokość tekstu tak, żeby mieścił się na jednej stronie."
+                         . "Problem dotyczy komórki zawierającej następującą treść: "
+                         . "\"%s\"."
                     ;
                     $content = mb_strlen($cell->getText()) < 250
                         ? $cell->getText()

@@ -330,16 +330,19 @@ class TableConverter
                 }
 
                 if ($height > $pageContentHeight) {
-                    $msg = "Wysokość bloku tekstu w komórce tabelki jest wyższa niż wysokość strony. "
-                         . "Proszę zmienić wysokość tekstu tak, żeby mieścił się na jednej stronie."
-                         . "Problem dotyczy komórki zawierającej następującą treść: "
-                         . "\"%s\"."
-                    ;
-                    $content = mb_strlen($cell->getText()) < 250
-                        ? $cell->getText()
-                        : mb_substr($cell->getText(), 0, 250) . ' [...]'
-                    ;
-                    throw new \Exception(sprintf($msg, $content));
+
+                    $cell->setText( rim(preg_replace('/\s+/', ' ',  $cell->getText());
+                    
+                    // $msg = "Wysokość bloku tekstu w komórce tabelki jest wyższa niż wysokość strony. "
+                    //      . "Proszę zmienić wysokość tekstu tak, żeby mieścił się na jednej stronie."
+                    //      . "Problem dotyczy komórki zawierającej następującą treść: "
+                    //      . "\"%s\"."
+                    // ;
+                    // $content = mb_strlen($cell->getText()) < 250
+                    //     ? $cell->getText()
+                    //     : mb_substr($cell->getText(), 0, 250) . ' [...]'
+                    // ;
+                    // throw new \Exception(sprintf($msg, $content));
                 }
 
                 if ($cell->getRowspan() > 1) {

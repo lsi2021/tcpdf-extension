@@ -130,7 +130,7 @@ class Cell
      * @param callable $formatter
      * @return \Tcpdf\Extension\Table\Cell
      */
-    public function setBackgroundFormatter(callable $formatter = null)
+    public function setBackgroundFormatter(?callable $formatter = null)
     {
         $this->getBackground()->setFormatter($formatter);
         return $this;
